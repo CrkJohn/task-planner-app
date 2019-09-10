@@ -1,0 +1,9 @@
+#avat{
+    height: auto; 
+    width: auto; 
+    max-width: 150px; 
+    max-height: 150px;
+    justify-items: center;
+    text-align: center;
+ 
+}
