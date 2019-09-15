@@ -1,0 +1,16 @@
+img{
+    width: 100px;
+    height: 100px;
+    border-radius: 10%;
+    padding: 5;
+}
+
+.logo-content{
+    margin: auto;
+}
+
+.tab-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 10px;
+}

@@ -1,13 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import  SingIn  from './component/SingIn/SingIn';
+import  SingIn  from './component/SignIn/SignIn';
+import Menu from './component/drawers/Menu';
 
 function App() {
   return (
-    <div className="App">
+    <div>
+        <Menu></Menu>
         <SingIn> </SingIn>
-    </div>
+        </div>
   );
 }
 
