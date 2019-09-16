@@ -1,5 +1,5 @@
 import React from 'react'
-import Container from '@material-ui/core/Container'
+    import Container from '@material-ui/core/Container'
 import Avatar from '@material-ui/core/Avatar'
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -38,8 +38,23 @@ const useStyles = theme => ({
 });
 
 
+
 class SingIn extends React.Component {
     //className={classes.avatar}
+
+
+    loginSubmit(){
+        const email=document.getElementById("email").value;
+        const password=document.getElementById("password").value
+        console.log(email + " " + password)
+        if( email!=="" &&  password!==""){
+            localStorage.setItem("isLoggedin",true);
+            localStorage.setItem("mailLogged",email);
+            localStorage.setItem("passwordLogged",password);
+        }
+    }
+
+
     render() {
         const { classes } = this.props;
         return (
@@ -60,6 +75,7 @@ class SingIn extends React.Component {
                             InputProps={{
                                 className: classes.multilineColor
                             }}
+                            id = "email"
                             type="email"
                             name="email"
                             autoComplete="email"
@@ -70,6 +86,7 @@ class SingIn extends React.Component {
                             InputProps={{
                                 className: classes.multilineColor
                             }}    
+                            id ="password"
                             label="Password"
                             type="password"
                             autoComplete="current-password"
@@ -77,9 +94,10 @@ class SingIn extends React.Component {
                             variant="filled"
                         />
                         <br></br>
-                        <Button className ={classes.button} style = {{
-                                backgroundColor: "#1976d2",color : "white"}} 
-                            variant="contained" >
+                        <Button type="submit"
+                                className ={classes.button} 
+                                style = {{backgroundColor: "#1976d2",color : "white"}} 
+                                variant="contained"  onClick={this.loginSubmit}>
                             Login
                         </Button>
                         <div style={{ padding: 20 }}> 

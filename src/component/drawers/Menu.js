@@ -23,6 +23,9 @@ const useStyles = ({
     },
     button : {
         top : "80%"
+    },
+    iconHover : {
+        color : "white",
     }
 });
 
@@ -55,7 +58,7 @@ class Menu extends React.Component {
         return (
             <div>
                 <Button onClick={this.handleOpen}>
-                    <DataUsageIcon  color="disabled" fontSize="large"  ></DataUsageIcon>
+                    <DataUsageIcon className={classes.iconHover}  fontSize="large"  ></DataUsageIcon>
                 </Button>
                 <Drawer open={this.state.open} onClose={this.handleClose}>
                     <div
