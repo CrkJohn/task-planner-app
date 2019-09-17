@@ -51,7 +51,9 @@ class SingIn extends React.Component {
             localStorage.setItem("isLoggedin",true);
             localStorage.setItem("mailLogged",email);
             localStorage.setItem("passwordLogged",password);
+            window.location.reload();
         }
+    
     }
 
 
