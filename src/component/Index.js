@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import { Cards } from './card/Cards';
 import  Menu from './drawers/Menu.js';
 import Container from '@material-ui/core/Container'
-import PlusOneIcon from '@material-ui/icons/PlusOne';
-import { Button } from '@material-ui/core';
 import './index.css'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = theme => ({
     paper: {
@@ -18,6 +17,7 @@ const useStyles = theme => ({
     },
     index : {
         backgroundColor : "#1976d2"
+    
     },
     iconHover : {
         color : "white",
@@ -28,8 +28,14 @@ const useStyles = theme => ({
         position: "fixed",
         bottom: theme.spacing.unit * 2,
         right: theme.spacing.unit * 3
-        
     },
+    h1: {
+        position: "fixed",
+        margin: theme.spacing.unit,
+    },
+    inline: {
+        display: "inline",
+    }
 });
 
 
@@ -59,7 +65,12 @@ class Index extends React.Component {
         const { classes } = this.props;
         return (
             <div className = {classes.index} id = "temp">
-                <Menu></Menu>
+                <div className = {classes.inline}>
+                    <Menu></Menu>
+                  
+                </div>
+                
+                <Divider id ="line"></Divider>
                 <Container maxWidth='sm' >
                     <div className={classes.paper}>
                         <Cards tdList={this.state.todos}/>

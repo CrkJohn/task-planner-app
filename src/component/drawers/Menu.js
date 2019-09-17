@@ -14,7 +14,7 @@ import DataUsageIcon from '@material-ui/icons/DataUsage';
 import './UserTab.css';
 
 
-const useStyles = ({
+const useStyles  = theme =>  ({
     list: {
         width: 250,
     },
@@ -22,10 +22,14 @@ const useStyles = ({
         width: 'auto',
     },
     button : {
-        top : "80%"
+        margin: theme.spacing.unit, // You might not need this now
+        position: "absolute",
+        bottom: theme.spacing.unit ,
+        right: theme.spacing.unit
     },
     iconHover : {
         color : "white",
+
     }
 });
 
@@ -39,6 +43,12 @@ class Menu extends React.Component {
         this.handleClose = this.handleClose.bind(this);
     }
 
+    logout() {
+        //localStorage.clear();
+        console.log("aja" + localStorage);
+        localStorage.removeItem("isLoggedin");
+        window.location.reload();
+    }
 
 
     handleOpen(e) {
@@ -89,15 +99,12 @@ class Menu extends React.Component {
                         ))}
                         </List>
                         <Divider/>
-                        <List>
-                            <ListItem justify = "center">
-                                <Button className = {classes.button} style = {{
+                        <Button className = {classes.button} style = {{
                                             backgroundColor: "#1976d2",color : "white"}} 
-                                        variant="contained" >
+                                        variant="contained" 
+                                        onClick={this.logout}>
                                         LogOut
-                                </Button>
-                            </ListItem>
-                        </List>
+                        </Button>
                     </div>
                 </Drawer>
             </div>

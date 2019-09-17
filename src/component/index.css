@@ -1,9 +1,12 @@
 #temp{
-        height: 100%;
-        width: 100%;
-        left: 0;
-        top: 0;
-        overflow: hidden;
-        position: fixed;
-    
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    position: fixed;
+}
+#line{
+    height: 4px;
+    background-color: rgb(255, 255, 255);
 }
