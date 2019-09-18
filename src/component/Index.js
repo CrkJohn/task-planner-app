@@ -44,7 +44,7 @@ const useStyles = theme => ({
     },
     inline: {
         display: "inline",
-    }
+    },
 });
 
 
@@ -141,11 +141,14 @@ class Index extends React.Component {
                     <Fab aria-label="add" className={classes.fab} onClick = {this.handleOpen}>
                         <AddIcon />
                     </Fab>
-
-                    <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title"  open={this.state.open} >
-                        <form onSubmit={this.handleSubmit} className="todo-form" style={{width:"100%"}}>
-                                <h3>New TODO</h3>
-
+                    <br />
+                    <Dialog className = {classes.dialog} fullWidth = {true} onClose={this.handleClose} aria-labelledby="simple-dialog-title"  open={this.state.open} >
+                        <form  onSubmit={this.handleSubmit}  style={{width:"100%"}}>
+                                <center>
+                               
+                                <h3>New task</h3>
+                                <Divider id="line2"></Divider>
+                                
                                 <TextField
                                     id="new-todo"
                                     label="Text"
@@ -180,15 +183,17 @@ class Index extends React.Component {
                                 <br />
                                 <br />
                                
-                                <center>
                                     <Button type="submit" variant="contained" color="primary">
-                                    {"Submit " + (this.state.todoList.length)}
+                                    {"Submit"}
                                     </Button>
-                                </center>
-                            
-                               
 
-                            
+                                    <Button onClick = {this.handleClose} variant="contained" color="secondary">
+                                        Cancel
+                                    </Button>
+                                    
+
+                                </center>
+                                <br />
                             </form>
 
                     </Dialog>
