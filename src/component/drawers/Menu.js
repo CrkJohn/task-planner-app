@@ -44,10 +44,8 @@ class Menu extends React.Component {
     }
 
     logout() {
-        //localStorage.clear();
-        console.log("aja" + localStorage);
         localStorage.removeItem("isLoggedin");
-        window.location.reload();
+        window.location.href = "/";
     }
 
 

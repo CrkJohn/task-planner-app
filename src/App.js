@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import  SignIn  from './component/SignIn/SignIn'
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import Index from './component/Index';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Index from './component/initial';
 
 
 class App extends React.Component {
@@ -17,6 +17,7 @@ class App extends React.Component {
     const index = () => (
         <Index></Index>
     );
+
     if (!isLoggedI) {
       return (
         <div>
@@ -25,10 +26,10 @@ class App extends React.Component {
         );
     }
     else {
-    
+     
       return(  
           <div>
-            <Route to="/index" component={index} />
+            <Route exact path ="/index" component={index} />
           </div>
         );
     }
@@ -43,10 +44,11 @@ class App extends React.Component {
     const isLoggedI = localStorage.getItem('isLoggedin')
     return (
       <Router>
-        <div id = "temp">   
-          {this.LoggedIn(isLoggedI)}
-        </div>
+          <Switch>
+            {this.LoggedIn(isLoggedI)}
+        </Switch>
       </Router>
+
     );
   }
 }
