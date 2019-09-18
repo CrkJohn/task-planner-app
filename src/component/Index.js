@@ -55,27 +55,74 @@ class Index extends React.Component {
         super(props);
         this.state = {
             todoList: [{
-                text: "Learn React", responsible: {
-                    name: "Santiago Carrillo",
-                    email: "sancarbar@gmail",
-                },
-                priority: 5,
+                text: "Learn React",
+                email : "John@crk.test",
+                name  : "david",
                 dueDate: new Date(),
                 status: "ready"
             },
-            { text: "Learn about APIs", priority: 4, dueDate: new Date(2018, 8, 30) },
-            { text: "write TODO App", priority: 3, dueDate: new Date(2018, 9, 30) }],
-            text: '', priority: 0, dueDate: moment(), open : false,
+            {
+                text: "Learn angular",
+                email : "John@crk.test",
+                name  : "Yowis",
+                dueDate: new Date(),
+                status: "pending"
+            },
+            {
+                text: "Component map",
+                email : "Tati@crk.test",
+                name  : "Tatiana",
+                dueDate: new Date(),
+                status: "done"
+            },
+            {
+                text: "Create match all routes",
+                email : "Santiago@crk.test",
+                name  : "Rocha",
+                dueDate: new Date(),
+                status: "pending"
+            },
+        
+            ],
+            text: '', dueDate: moment(), open: false,
+            name: '', email: '', status : '',
         };
 
+
+
         this.handleTextChange = this.handleTextChange.bind(this);
-        this.handlePriorityChange = this.handlePriorityChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleStatusChange = this.handleStatusChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+
+
+        this.handlePriorityChange = this.handlePriorityChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        
 
+
+    }
+
+    handleStatusChange(e) {
+        this.setState({
+            status: e.target.value
+        });
+    }
+
+
+    handleEmailChange(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
+
+    handleNameChange(e) {
+        this.setState({
+            name: e.target.value
+        });
     }
 
     handleTextChange(e) {
@@ -96,7 +143,6 @@ class Index extends React.Component {
         });
     }
 
-
     handleOpen(e) {
         this.setState({
             open: true
@@ -111,13 +157,15 @@ class Index extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (!this.state.text.length) {
+        if (!this.state.email.length || !this.state.status.length || !this.state.dueDate || !this.state.name.length) {
             return;
         }
         const newItem = {
             text: this.state.text,
             dueDate: this.state.dueDate,
-            priority: this.state.priority,
+            status: this.state.status,
+            name: this.state.name,
+            email: this.state.email,
             id: Date.now()
         };
         this.setState(prevState => ({
@@ -131,24 +179,23 @@ class Index extends React.Component {
         const { classes } = this.props;
         return (
             <div className={classes.index} id="temp">
-             
+
                 <Menu></Menu>
                 <Divider id="line"></Divider>
                 <Container maxWidth='sm'>
-                    <div className={classes.paper}  style={{ overflow: 'auto', height: '600px' }}  >
-                        <Cards  tdList={this.state.todoList} />
+                    <div className={classes.paper} style={{ overflow: 'auto', height: '600px' }}  >
+                        <Cards tdList={this.state.todoList} />
                     </div>
-                    <Fab aria-label="add" className={classes.fab} onClick = {this.handleOpen}>
+                    <Fab aria-label="add" className={classes.fab} onClick={this.handleOpen}>
                         <AddIcon />
                     </Fab>
                     <br />
-                    <Dialog className = {classes.dialog} fullWidth = {true} onClose={this.handleClose} aria-labelledby="simple-dialog-title"  open={this.state.open} >
-                        <form  onSubmit={this.handleSubmit}  style={{width:"100%"}}>
-                                <center>
-                               
+                    <Dialog className={classes.dialog} fullWidth={true} onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.open} >
+                        <form onSubmit={this.handleSubmit} style={{ width: "100%" }}>
+                            <center>
                                 <h3>New task</h3>
                                 <Divider id="line2"></Divider>
-                                
+
                                 <TextField
                                     id="new-todo"
                                     label="Text"
@@ -157,22 +204,39 @@ class Index extends React.Component {
                                     onChange={this.handleTextChange}
                                     value={this.state.text}
                                 />
-                                 <br />
-                                 <br />
-                                <TextField
-                                    id="new-priority"
-                                    label="Number"
-                                    type="number"
-                                    InputLabelProps={{
-                                    shrink: true,
-                                    }}
-                                    margin="normal"
-                                    onChange={this.handlePriorityChange}
-                                    value={this.state.priority}
-                                />
-                                 <br />
                                 <br />
-                                
+                                <br />
+
+                                <TextField
+                                    id="new-status"
+                                    label="status"
+                                    type="text"
+                                    onChange={this.handleStatusChange}
+                                    value={this.state.status}
+                                />
+                                <br />
+                                <br />
+
+                                <TextField
+                                    id="new-email"
+                                    label="email"
+                                    type="text"
+                                    onChange={this.handleEmailChange}
+                                    value={this.state.email}
+                                />
+                                <br />
+                                <br />
+
+                                <TextField
+                                    id="new-name"
+                                    label="name"
+                                    type="text"
+                                    onChange={this.handleNameChange}
+                                    value={this.state.name}
+                                />
+                                <br />
+                                <br />
+
                                 <DatePicker
                                     id="due-date"
                                     placeholderText="Due date"
@@ -182,19 +246,19 @@ class Index extends React.Component {
                                 </DatePicker>
                                 <br />
                                 <br />
-                               
-                                    <Button type="submit" variant="contained" color="primary">
+
+                                <Button type="submit" variant="contained" color="primary">
                                     {"Submit"}
-                                    </Button>
+                                </Button>
 
-                                    <Button onClick = {this.handleClose} variant="contained" color="secondary">
-                                        Cancel
-                                    </Button>
-                                    
+                                <Button onClick={this.handleClose} variant="contained" color="secondary">
+                                    Cancel
+                                </Button>
 
-                                </center>
-                                <br />
-                            </form>
+
+                            </center>
+                            <br />
+                        </form>
 
                     </Dialog>
 
