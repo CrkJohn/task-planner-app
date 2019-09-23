@@ -81,8 +81,17 @@ const useStyles = theme => ({
 
 class SignUp extends React.Component {
 
-    constructor(props) {
-        super(props);
+    signupCl(){
+        const name=document.getElementById("firstName").value;
+        const email=document.getElementById("email").value;
+        const password=document.getElementById("password").value
+        const password2=document.getElementById("cpassword").value
+        if(password===password2){
+            localStorage.setItem("isLoggedin",true);
+            localStorage.setItem("mailLogged",email);
+            localStorage.setItem("passwordLogged",password);
+            window.location.href = "/index";
+        }   
     }
 
     render() {

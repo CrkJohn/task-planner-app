@@ -10,6 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
+import SignUp from '../SignUp/SignUp';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 const imgUrl = process.env.PUBLIC_URL + '/SignIn/footer.png'
@@ -59,8 +61,13 @@ class SingIn extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const SignUpView = () => (
+            <SignUp></SignUp>
+        );
         return (
-            <div>
+            <Router>
+
+          <div>
                 <Container maxWidth='xl' >
                     <div className={classes.paper}>
                         <Typography component="h1" variant="h5">
@@ -105,7 +112,7 @@ class SingIn extends React.Component {
                         <div style={{ padding: 20 }}> 
                             <Grid container justify="center">
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link to="/singUp"  href="/singUp"variant="body2">
                                         Create acount
                                     </Link>
                                 </Grid>
@@ -114,8 +121,13 @@ class SingIn extends React.Component {
                     </div>
 
                 </Container>
-            </div>
+                
+                <Route path="/singUp" component={SignUpView} />
 
+            </div>
+            </Router>
+
+                            
         );
     }
 }
