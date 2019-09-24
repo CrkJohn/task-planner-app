@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {Link} from 'react-router-dom';
+import swal from 'sweetalert';
 
 
 const imgUrl = process.env.PUBLIC_URL + '/SignIn/footer.png'
@@ -68,9 +69,9 @@ class SingIn extends React.Component {
             localStorage.setItem("isLoggedin", true);
             localStorage.setItem("mailLogged", email);
             localStorage.setItem("passwordLogged", password);
+            swal("Good job!", "You clicked the button!", "success");
             window.location.href = "/index";
         }
-
     }
 
 
