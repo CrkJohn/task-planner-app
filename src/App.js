@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
 import  SignIn  from './component/SignIn/SignIn'
+import  SignUp  from './component/SignUp/SignUp'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import Index from './component/initial';
 
 
@@ -42,11 +44,25 @@ class App extends React.Component {
       localStorage.setItem('isLoggedin', false)
     }
     const isLoggedI = localStorage.getItem('isLoggedin')
+    const SignInView = () => (
+      <SignIn></SignIn>
+    );
+    const SignUpView = () => (
+      <SignUp></SignUp>
+    );
+
+  
     return (
       <Router>
-          <Switch>
+        <div>
+        <Switch>
             {this.LoggedIn(isLoggedI)}
         </Switch>
+        <Route path="/singUp" component={SignUpView} />
+        <Route path="/signin" component={SignInView} />
+        </div>
+         
+
       </Router>
 
     );

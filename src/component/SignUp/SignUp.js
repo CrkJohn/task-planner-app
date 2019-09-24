@@ -6,13 +6,13 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import './SingUp.css'
+import {Link} from 'react-router-dom';
+
 
 const imgUrl = process.env.PUBLIC_URL + '/fondo.png'
 
@@ -87,6 +87,7 @@ class SignUp extends React.Component {
         const password=document.getElementById("password").value
         const password2=document.getElementById("cpassword").value
         if(password===password2){
+            localStorage.setItem("name",name);
             localStorage.setItem("isLoggedin",true);
             localStorage.setItem("mailLogged",email);
             localStorage.setItem("passwordLogged",password);
@@ -191,16 +192,18 @@ class SignUp extends React.Component {
                       </Button>
                             <Grid container justify="flex-end">
                                 <Grid item>
-                                    <Link href="/" variant="body2" style={{ color: "white" }}  >
+                                    <Link to="/signin" variant="body2" style={{ color: "white" }}  >
                                         Already have an account? Sign in
-                                </Link>
+                                    </Link>
                                 </Grid>
                             </Grid>
                         </form>
                     </div>
 
                 </Container>
+
             </div>
+            
         );
     }
 }

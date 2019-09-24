@@ -14,8 +14,6 @@ import moment from 'moment';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import "react-datepicker/dist/react-datepicker.css";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 
 
 const useStyles = theme => ({
@@ -54,40 +52,27 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todoList: [{
+            todoList: [JSON.stringify({
                 text: "Learn React",
                 email : "John@crk.test",
                 name  : "david",
                 dueDate: new Date(),
                 status: "ready"
-            },
-            {
+            }),
+            JSON.stringify({
                 text: "Learn angular",
                 email : "John@crk.test",
                 name  : "Yowis",
                 dueDate: new Date(),
                 status: "pending"
-            },
-            {
-                text: "Component map",
-                email : "Tati@crk.test",
-                name  : "Tatiana",
-                dueDate: new Date(),
-                status: "done"
-            },
-            {
-                text: "Create match all routes",
-                email : "Santiago@crk.test",
-                name  : "Rocha",
-                dueDate: new Date(),
-                status: "pending"
-            },
+            }),
         
             ],
             text: '', dueDate: moment(), open: false,
             name: '', email: '', status : '',
         };
-
+        
+    
 
 
         this.handleTextChange = this.handleTextChange.bind(this);
@@ -168,10 +153,15 @@ class Index extends React.Component {
             email: this.state.email,
             id: Date.now()
         };
-        this.setState(prevState => ({
-            todoList: prevState.todoList.concat(newItem),
-            text: ''
-        }));
+        var tdListJSON = []
+        var tdLists = JSON.parse(localStorage.getItem("tdList"));
+        for(var i = 0 ; i < tdLists.length  ; ++i ){
+            console.log(tdLists[i])
+            tdListJSON.push(tdLists[i]);
+        } 
+        tdListJSON.push(JSON.stringify(newItem));
+        localStorage.setItem("tdList",JSON.stringify(tdListJSON));
+       
     }
 
 

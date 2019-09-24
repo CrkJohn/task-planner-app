@@ -1,5 +1,5 @@
 import React from 'react'
-    import Container from '@material-ui/core/Container'
+import Container from '@material-ui/core/Container'
 import Avatar from '@material-ui/core/Avatar'
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -9,9 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import SignUp from '../SignUp/SignUp';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 const imgUrl = process.env.PUBLIC_URL + '/SignIn/footer.png'
@@ -34,8 +32,8 @@ const useStyles = theme => ({
     root: {
         backgroundImage: `url(${imgUrl})`,
     },
-    multilineColor:{
-        backgroundColor : 'white'
+    multilineColor: {
+        backgroundColor: 'white'
     },
 });
 
@@ -43,91 +41,100 @@ const useStyles = theme => ({
 
 class SingIn extends React.Component {
     //className={classes.avatar}
+    constructor(props){
+        super(props);
+        localStorage.setItem("tdList" , JSON.stringify( [ JSON.stringify({
+            text: "Component map",
+            email : "Tati@crk.test",
+            name  : "Tatiana",
+            dueDate: new Date(),
+            status: "done"
+        }),
+        JSON.stringify({
+            text: "Create match all routes",
+            email : "Santiago@crk.test",
+            name  : "Rocha",
+            dueDate: new Date(),
+            status: "pending"
+        })]));
 
+    }
 
-    loginSubmit(){
-        const email=document.getElementById("email").value;
-        const password=document.getElementById("password").value
+    loginSubmit() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value
         console.log(email + " " + password)
-        if( email!=="" &&  password!==""){
-            localStorage.setItem("isLoggedin",true);
-            localStorage.setItem("mailLogged",email);
-            localStorage.setItem("passwordLogged",password);
+        if (email !== "" && password !== "") {
+            localStorage.setItem("isLoggedin", true);
+            localStorage.setItem("mailLogged", email);
+            localStorage.setItem("passwordLogged", password);
             window.location.href = "/index";
         }
-    
+
     }
 
 
     render() {
         const { classes } = this.props;
-        const SignUpView = () => (
-            <SignUp></SignUp>
-        );
         return (
-            <Router>
-
-          <div>
-                <Container maxWidth='xl' >
-                    <div className={classes.paper}>
-                        <Typography component="h1" variant="h5">
-                            Trello Mobile
-                   </Typography>
-                        <Avatar id="avat" src={process.env.PUBLIC_URL + '/SignIn/trello.png'} className={classes.avatar} >
-                        </Avatar>
-                        <LockOutlinedIcon />
-                        <Typography component="h1" variant="h5">
-                            Sign in
-                   </Typography>
-                        <TextField
-                            label="Email"
-                            InputProps={{
-                                className: classes.multilineColor
-                            }}
-                            id = "email"
-                            type="email"
-                            name="email"
-                            autoComplete="email"
-                            margin="normal"
-                            variant="filled"
-                        />
-                        <TextField
-                            InputProps={{
-                                className: classes.multilineColor
-                            }}    
-                            id ="password"
-                            label="Password"
-                            type="password"
-                            autoComplete="current-password"
-                            margin="normal"
-                            variant="filled"
-                        />
-                        <br></br>
-                        <Button type="submit"
-                                className ={classes.button} 
-                                style = {{backgroundColor: "#1976d2",color : "white"}} 
-                                variant="contained"  onClick={this.loginSubmit}>
-                            Login
+     
+                <div>
+                    <Container maxWidth='xl' >
+                        <div className={classes.paper}>
+                            <Typography component="h1" variant="h5">
+                                Trello Mobile
+                            </Typography>
+                            <Avatar id="avat" src={process.env.PUBLIC_URL + '/SignIn/trello.png'} className={classes.avatar} >
+                            </Avatar>
+                            <LockOutlinedIcon />
+                            <Typography component="h1" variant="h5">
+                                Sign in
+                                </Typography>
+                            <TextField
+                                label="Email"
+                                InputProps={{
+                                    className: classes.multilineColor
+                                }}
+                                id="email"
+                                type="email"
+                                name="email"
+                                autoComplete="email"
+                                margin="normal"
+                                variant="filled"
+                            />
+                            <TextField
+                                InputProps={{
+                                    className: classes.multilineColor
+                                }}
+                                id="password"
+                                label="Password"
+                                type="password"
+                                autoComplete="current-password"
+                                margin="normal"
+                                variant="filled"
+                            />
+                            <br></br>
+                            <Button type="submit"
+                                className={classes.button}
+                                style={{ backgroundColor: "#1976d2", color: "white" }}
+                                variant="contained" onClick={this.loginSubmit}>
+                                Login
                         </Button>
-                        <div style={{ padding: 20 }}> 
-                            <Grid container justify="center">
-                                <Grid item>
-                                    <Link to="/singUp"  href="/singUp"variant="body2">
-                                        Create acount
-                                    </Link>
+                            <div style={{ padding: 20 }}>
+                                <Grid container justify="center">
+                                    <Grid item>
+                                        <Link to="/singUp">
+                                            Create acount
+                                        </Link>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
+                            </div>
                         </div>
-                    </div>
 
-                </Container>
+                    </Container>
+
                 
-                <Route path="/singUp" component={SignUpView} />
-
-            </div>
-            </Router>
-
-                            
+                </div>
         );
     }
 }
