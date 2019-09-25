@@ -7,11 +7,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import DataUsageIcon from '@material-ui/icons/DataUsage';
 import './UserTab.css';
+import SearchIcon from '@material-ui/icons/Search';
+import {Link} from 'react-router-dom';
 
 
 const useStyles  = theme =>  ({
@@ -65,9 +66,16 @@ class Menu extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <Button onClick={this.handleOpen}>
+                
+                <Button onClick={this.handleOpen} style= {{top:0, left:0}} >
                     <DataUsageIcon className={classes.iconHover}  fontSize="large"  ></DataUsageIcon>
                 </Button>
+                <Button  style={{position:"fixed",top:0, right:0}}>
+                    <SearchIcon className={classes.iconHover}  fontSize="large"  ></SearchIcon>
+                </Button>
+            
+                <Divider id="line"></Divider>
+
                 <Drawer open={this.state.open} onClose={this.handleClose}>
                     <div
                         className={classes.list}
@@ -86,15 +94,22 @@ class Menu extends React.Component {
                                 <ListItemText>
                                     David Ibañez
                                 </ListItemText> 
+                            </ListItem> 
 
-                            </ListItem>
 
-                            {['Edit profile'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
+                            <ListItem button component={Link} to="/index">
+                                <ListItemIcon>
+                                    <InboxIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={'Index'}/>    
+                            </ListItem > 
+                            <ListItem button component={Link} to="/editprofile">
+                                <ListItemIcon>
+                                    <InboxIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={'Edit profile'}/>    
+                            </ListItem > 
+                        
                         </List>
                         <Divider/>
                         <Button className = {classes.button} style = {{

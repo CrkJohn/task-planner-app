@@ -14,6 +14,7 @@ import moment from 'moment';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import "react-datepicker/dist/react-datepicker.css";
+    
 
 
 const useStyles = theme => ({
@@ -171,7 +172,7 @@ class Index extends React.Component {
             <div className={classes.index} id="temp">
 
                 <Menu></Menu>
-                <Divider id="line"></Divider>
+               
                 <Container maxWidth='sm'>
                     <div className={classes.paper} style={{ overflow: 'auto', height: '600px' }}  >
                         <Cards tdList={this.state.todoList} />
