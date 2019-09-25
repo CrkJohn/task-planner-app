@@ -85,6 +85,7 @@ class EditProfile extends React.Component {
         const password=document.getElementById("password").value
         const password2=document.getElementById("cpassword").value
         var msj = "Nothing will be changed because there are no modifications."
+        
         if(name!==""){
             swal("The name will be changed to " + name, {
                 buttons: {
@@ -106,6 +107,7 @@ class EditProfile extends React.Component {
                 }
               });
         }
+
         if(email!==""){
             swal("The email will be changed to " + email, {
                 buttons: {

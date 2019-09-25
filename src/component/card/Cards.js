@@ -12,13 +12,10 @@ export class Cards extends React.Component {
 
     render() {
         var tdListJSON = []
-        for(var i = 0 ; i < this.props.tdList.length ; ++i ){
-            tdListJSON.push(JSON.parse( this.props.tdList[i]));
-        } 
         var tdLists = JSON.parse(localStorage.getItem("tdList"));
-        for(i = 0 ; i < tdLists.length  ; ++i ){
+        for(var i = 0 ; i < tdLists.length  ; ++i ){
             tdListJSON.push(JSON.parse(tdLists[i]));
-        } 
+        }
 
         const listTodo = tdListJSON.map( (td) =>
             <div id ="test" >

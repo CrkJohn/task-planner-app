@@ -13,7 +13,7 @@ export class Todo extends React.Component {
                         {this.props.text}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                        {" Date " + this.props.dueDate}
+                        {" Date " + this.props.dueDate.split("T")[0]}
                 </Typography>
 
                 <Typography variant="body2" color="textSecondary" component="p">
@@ -23,8 +23,6 @@ export class Todo extends React.Component {
                 <Typography variant="body2" color="textSecondary" component="p">
                         {" Email resposible " + this.props.email}
                 </Typography>
-
-
             </CardContent>
         );
     }

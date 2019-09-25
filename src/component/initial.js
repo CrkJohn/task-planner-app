@@ -14,7 +14,8 @@ import moment from 'moment';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import "react-datepicker/dist/react-datepicker.css";
-    
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 
 const useStyles = theme => ({
@@ -53,26 +54,10 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todoList: [JSON.stringify({
-                text: "Learn React",
-                email : "John@crk.test",
-                name  : "david",
-                dueDate: new Date(),
-                status: "ready"
-            }),
-            JSON.stringify({
-                text: "Learn angular",
-                email : "John@crk.test",
-                name  : "Yowis",
-                dueDate: new Date(),
-                status: "pending"
-            }),
-        
-            ],
+            
             text: '', dueDate: moment(), open: false,
             name: '', email: '', status : '',
         };
-        
     
 
 
@@ -168,6 +153,9 @@ class Index extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const estados = [
+            { value: "Completed"}, { value: "In Progress" }, { value: "Ready"}
+          ]   
         return (
             <div className={classes.index} id="temp">
 
@@ -200,11 +188,21 @@ class Index extends React.Component {
 
                                 <TextField
                                     id="new-status"
+                                    select
                                     label="status"
-                                    type="text"
+                                    margin="normal"
+                                    helperText="Please select a status"
+
                                     onChange={this.handleStatusChange}
                                     value={this.state.status}
-                                />
+                                    
+                                >
+                                {estados.map(option => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                      {option.value}
+                                    </MenuItem>))}
+
+                                </TextField>
                                 <br />
                                 <br />
 

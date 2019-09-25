@@ -57,7 +57,24 @@ class SingIn extends React.Component {
             name  : "Rocha",
             dueDate: new Date(),
             status: "pending"
-        })]));
+        }),
+        JSON.stringify({
+                text: "Learn React",
+                email : "John@crk.test",
+                name  : "david",
+                dueDate: new Date(),
+                status: "ready"
+        }),
+        JSON.stringify({
+            text: "Learn angular",
+            email : "John@crk.test",
+                name  : "Yowis",
+                dueDate: new Date(),
+                status: "pending"
+            }),
+    
+    
+        ]));
 
     }
 
