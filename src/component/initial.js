@@ -54,11 +54,14 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
             text: '', dueDate: moment(), open: false,
-            name: '', email: '', status : '',
+            name: '', email: '', status: '',
+            openFilter: false,
+            filter: { name: '', status: '', dueDate: null },
+            filtering: { name: '', status: '', dueDate: null }
         };
-    
+
 
 
         this.handleTextChange = this.handleTextChange.bind(this);
@@ -72,6 +75,9 @@ class Index extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOpen = this.handleOpen.bind(this);
         this.handleClose = this.handleClose.bind(this);
+
+
+  
 
 
     }
@@ -126,6 +132,8 @@ class Index extends React.Component {
         });
     }
 
+  
+
     handleSubmit(e) {
         e.preventDefault();
         if (!this.state.email.length || !this.state.status.length || !this.state.dueDate || !this.state.name.length) {
@@ -141,26 +149,29 @@ class Index extends React.Component {
         };
         var tdListJSON = []
         var tdLists = JSON.parse(localStorage.getItem("tdList"));
-        for(var i = 0 ; i < tdLists.length  ; ++i ){
+        for (var i = 0; i < tdLists.length; ++i) {
             console.log(tdLists[i])
             tdListJSON.push(tdLists[i]);
-        } 
+        }
         tdListJSON.push(JSON.stringify(newItem));
-        localStorage.setItem("tdList",JSON.stringify(tdListJSON));
-       
+        localStorage.setItem("tdList", JSON.stringify(tdListJSON));
+
     }
+
+
 
 
     render() {
         const { classes } = this.props;
         const estados = [
-            { value: "Completed"}, { value: "In Progress" }, { value: "Ready"}
-          ]   
+            { value: "Completed" }, { value: "In Progress" }, { value: "Ready" }
+        ]
         return (
             <div className={classes.index} id="temp">
 
                 <Menu></Menu>
-               
+
+
                 <Container maxWidth='sm'>
                     <div className={classes.paper} style={{ overflow: 'auto', height: '600px' }}  >
                         <Cards tdList={this.state.todoList} />
@@ -169,6 +180,11 @@ class Index extends React.Component {
                         <AddIcon />
                     </Fab>
                     <br />
+
+
+
+
+
                     <Dialog className={classes.dialog} fullWidth={true} onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.open} >
                         <form onSubmit={this.handleSubmit} style={{ width: "100%" }}>
                             <center>
@@ -195,12 +211,12 @@ class Index extends React.Component {
 
                                     onChange={this.handleStatusChange}
                                     value={this.state.status}
-                                    
+
                                 >
-                                {estados.map(option => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                      {option.value}
-                                    </MenuItem>))}
+                                    {estados.map(option => (
+                                        <MenuItem key={option.value} value={option.value}>
+                                            {option.value}
+                                        </MenuItem>))}
 
                                 </TextField>
                                 <br />

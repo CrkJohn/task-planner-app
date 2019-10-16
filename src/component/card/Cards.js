@@ -9,13 +9,13 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 export class Cards extends React.Component {
   
 
-
     render() {
         var tdListJSON = []
         var tdLists = JSON.parse(localStorage.getItem("tdList"));
         for(var i = 0 ; i < tdLists.length  ; ++i ){
             tdListJSON.push(JSON.parse(tdLists[i]));
         }
+        
 
         const listTodo = tdListJSON.map( (td) =>
             <div id ="test" >
