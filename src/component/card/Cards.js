@@ -17,20 +17,36 @@ export class Cards extends React.Component {
         }
         
 
-        const listTodo = tdListJSON.map( (td) =>
-            <div id ="test" >
-                <Card>
-                    <CardActionArea>
-                        <Todo email={td.email} status = {td.status} text = {td.text} priority = {td.priority} dueDate = {td.dueDate} ></Todo>  
-                    </CardActionArea>
-                </Card>
-                <br></br>
-            </div>
-           
-        );
+        const listTodo = tdListJSON.map( (td,id) =>{
+            if(this.props.filter!==undefined  && (this.props.filter.email !== '' || 
+            this.props.filter.status !== '')){
+                if (td.email.includes(this.props.filter.email) || 
+                    td.status.includes( this.props.filter.status)) {
+
+                    return (<div key={id}>
+                        <Card>
+                            <CardActionArea>
+                                <Todo email={td.email} status = {td.status} text = {td.text} priority = {td.priority} dueDate = {td.dueDate} ></Todo>  
+                            </CardActionArea>
+                        </Card>
+                        <br></br>
+                    </div>);
+                }
+
+            }else{
+                return(<div key={id}>
+                    <Card>
+                        <CardActionArea>
+                            <Todo email={td.email} status = {td.status} text = {td.text} priority = {td.priority} dueDate = {td.dueDate} ></Todo>  
+                        </CardActionArea>
+                    </Card>
+                    <br></br>
+                </div>);
+            }
+        });
         return (
             <div>
-            {listTodo}
+                {listTodo}
             </div>
         );
     }

@@ -49,28 +49,28 @@ class SingIn extends React.Component {
             email : "Tati@crk.test",
             name  : "Tatiana",
             dueDate: new Date(),
-            status: "done"
+            status: "Ready"
         }),
         JSON.stringify({
             text: "Create match all routes",
             email : "Santiago@crk.test",
             name  : "Rocha",
             dueDate: new Date(),
-            status: "pending"
+            status: "In Progress"
         }),
         JSON.stringify({
                 text: "Learn React",
                 email : "John@crk.test",
                 name  : "david",
                 dueDate: new Date(),
-                status: "ready"
+                status: "Ready"
         }),
         JSON.stringify({
             text: "Learn angular",
             email : "John@crk.test",
                 name  : "Yowis",
                 dueDate: new Date(),
-                status: "pending"
+                status: "In Progress"
             }),
     
     
