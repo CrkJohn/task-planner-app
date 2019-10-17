@@ -16,7 +16,12 @@ import Divider from '@material-ui/core/Divider';
 import Dialog from '@material-ui/core/Dialog';
 import { Cards } from '../card/Cards';
 import SearchIcon from '@material-ui/icons/Search';
-
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import DateFnsUtils from "@date-io/date-fns"; // import
 
 const imgUrl = process.env.PUBLIC_URL + '/fondo.png'
 
@@ -147,7 +152,7 @@ class Filter extends React.Component {
     }
     render() {
         const estados = [
-            { value: "Completed" }, { value: "In Progress" }, { value: "Ready" }
+            { value: "Completed" }, { value: "InProgress" }, { value: "Ready" }
         ]
         const { classes } = this.props;
         return (
@@ -161,12 +166,14 @@ class Filter extends React.Component {
                                 <center>
                                     <h3>Filter</h3>
                                     <Divider id="line2"></Divider>
+                                    <Container component="main" maxWidth="xs">
                                     <TextField
                                         id="textFilter"
                                         label="Name"
                                         value={this.state.name}
                                         onChange={this.handleNameFilterChange}
-                                        margin="normal" />
+                                        margin="normal" 
+                                        fullWidth = {true}/>
                                     <br />
 
 
@@ -176,6 +183,7 @@ class Filter extends React.Component {
                                         label="status"
                                         margin="normal"
                                         helperText="Please select a status"
+                                        fullWidth = {true}
 
                                         onChange={this.handleStatusFilterChange}
                                         value={this.state.status}
@@ -188,21 +196,30 @@ class Filter extends React.Component {
 
                                     </TextField>
                                     <br />
-                                    <TextField
-                                        id="due-date"
-                                        label="Due Date"
-                                        type="date"
-                                        defaultValue={this.state.dueDate ? this.state.filter.dueDate.format('YYYY-MM-DD') : null}
-                                        onChange={this.handleDueDateFilterChange}
-                                        margin="normal"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }} />
+                                    
+                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+   
+                                        <KeyboardDatePicker
+                                            disableToolbar
+                                            variant="inline"
+                                            format="yyyy/MM/dd"
+                                            margin="normal"
+                                            id="date-picker-inline"
+                                            label="Date picker inline"
+                                            value={this.state.dueDate}
+                                            onChange={this.handleDueDateFilterChange}
+                                            KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                            }}
+                                        />
+                                                     
+                                    </MuiPickersUtilsProvider>
                                     <br /><br />
 
                                     <Button type="submit" variant="contained" color="primary">
                                         {"Submit"}
                                     </Button>
+                                    </Container>
                                     <br /><br />
                                 </center>
                             </form>

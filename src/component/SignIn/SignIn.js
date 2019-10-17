@@ -56,7 +56,7 @@ class SingIn extends React.Component {
             email : "Santiago@crk.test",
             name  : "Rocha",
             dueDate: new Date(),
-            status: "In Progress"
+            status: "InProgress"
         }),
         JSON.stringify({
                 text: "Learn React",
@@ -70,7 +70,7 @@ class SingIn extends React.Component {
             email : "John@crk.test",
                 name  : "Yowis",
                 dueDate: new Date(),
-                status: "In Progress"
+                status: "InProgress"
             }),
     
     

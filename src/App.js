@@ -12,44 +12,19 @@ class App extends React.Component {
 
 
 
-  LoggedIn(isLoggedI) {
-    const LoginView = () => (
-      <SignIn />
-    );
-
-    const index = () => (
-        <Index></Index>
-    );
-
-    if (!isLoggedI) {
-      return (
-        <div>
-            <Route exact path="/" component={LoginView} />
-        </div>
-        );
-    }
-    else {
-     
-      return(  
-          <div>
-            <Route exact path ="/index" component={index} />
-          </div>
-        );
-    }
-  }
-
 
 
   render() {
     if (localStorage.getItem('isLoggedin') === undefined) {
       localStorage.setItem('isLoggedin', false)
     }
-    const isLoggedI = localStorage.getItem('isLoggedin')
-    const SignInView = () => (
-      <SignIn></SignIn>
-    );
     const SignUpView = () => (
       <SignUp></SignUp>
+    );
+    const LoginView = () => (
+      <div>   
+        {localStorage.getItem('isLoggedin') ? <div><Index/> </div> : <SignIn />}
+      </div>
     );
 
   
@@ -57,13 +32,13 @@ class App extends React.Component {
       <Router>
         <div>
         <Switch>
-            {this.LoggedIn(isLoggedI)}
-        </Switch>
-          <Route path="/singUp" component={SignUpView} />
-          <Route path="/signin" component={SignInView} />
-          <Route path="/editprofile" component={EditProfile}/>
-          <Route path="/filter" component={Filter}/>
-          
+          <Route exact path="/" component={LoginView} />
+          <Route exact path ="/index" component={Index} />
+          <Route exact path="/singUp" component={SignUpView} />
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/editprofile" component={EditProfile}/>
+          <Route exact path="/filter" component={Filter}/>
+        </Switch>         
         </div>
       </Router>
 

@@ -164,7 +164,7 @@ class Index extends React.Component {
     render() {
         const { classes } = this.props;
         const estados = [
-            { value: "Completed" }, { value: "In Progress" }, { value: "Ready" }
+            { value: "Completed" }, { value: "InProgress" }, { value: "Ready" }
         ]
         return (
             <div className={classes.index} id="temp">
