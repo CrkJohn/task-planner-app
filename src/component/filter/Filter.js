@@ -77,6 +77,12 @@ const useStyles = theme => ({
     },
     floatingLabelFocusStyle: {
         color: "white"
+    },
+    fab: {
+        margin: theme.spacing.unit, // You might not need this now
+        position: "fixed",
+        bottom: theme.spacing.unit * 2,
+        right: theme.spacing.unit * 3
     }
 });
 
@@ -204,7 +210,7 @@ class Filter extends React.Component {
                         <div className={classes.paper} style={{ overflow: 'auto', height: '600px' }}  >
                             <Cards tdList={this.state.todoList} filter = {this.state.filtering} />
                         </div> 
-                        <Avatar className={classes.avatar}>
+                        <Avatar className={classes.fab}>
                             <SearchIcon fontSize="large" onClick={this.handleOpenFilter}></SearchIcon>
                         </Avatar>     
                              
